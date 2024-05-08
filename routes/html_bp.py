@@ -19,12 +19,19 @@ def course_json():
 def student_json():
     statement = db.select(Student).order_by(Student.name)
     records = db.session.execute(statement)
-    course = records.scalars().all()
+    student = records.scalars().all()
     return render_template("students.html", student=student)
 
 @html_bp.route("/programs")
 def program_json():
     statement = db.select(Program).order_by(Program.name)
     records = db.session.execute(statement)
-    course = records.scalars().all()
+    program = records.scalars().all()
     return render_template("programs.html", program=program)
+
+@html_bp.route("/registration")
+def registration_json():
+    statement = db.select(Registration).order_by(Registration.name)
+    records = db.session.execute(statement)
+    register = records.scalars().all()
+    return render_template("registration.html", register=register)
