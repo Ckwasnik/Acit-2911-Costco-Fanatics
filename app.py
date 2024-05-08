@@ -1,7 +1,8 @@
 from pathlib import Path
 from db import db
-from flask import Flask
+from flask import Flask, render_template, jsonify, request, redirect, url_for
 from models import Program, Student, Course, Registration
+from routes.html_bp import html_bp
 
 
 app = Flask(__name__)
