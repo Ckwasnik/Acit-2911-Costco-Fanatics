@@ -1,6 +1,6 @@
 from db import db
 from app import app
-from models import Student, Program, Course
+from models import Student, Program, Course, Registration
 import csv
 from sqlalchemy.sql import functions as func
 from random import randint, random
@@ -56,11 +56,24 @@ def create_programs():
     with app.app_context():
         db.create_all()
         for info in programinfo:
-            # Create a Student
             program = Program(name=info['name'])
-            # Add each student to the database session
             db.session.add(program)
         db.session.commit()
+
+def create_registration(amount):
+    for _ in range(amount):
+        with app.app_context():
+            select_student = db.select(Student.id).order_by(func.random()).limit(1)
+            student = db.session.execute(select_student).scalar()
+
+            select_course = db.select(Course.id).order_by(func.random()).limit(1)
+            course = db.session.execute(select_course).scalar()
+
+            registration = Registration(student_id=student, course_id=course)
+            db.session.add(registration)
+
+            db.session.commit()
+
 
 
 
@@ -70,3 +83,4 @@ if __name__ == "__main__":
     create_students()
     create_programs()
     create_courses()
+    create_registration(1)
