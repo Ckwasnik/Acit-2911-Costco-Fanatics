@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #1a5a7c;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .schedule {
+    width: 100%;
+    max-width: 800px;
+    background: #006d77;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000; /* Adjust text color for readability on light background */
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .logo {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .controls input,
+  .controls select,
+  .controls button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  .controls button {
+    background-color: #3949AB;
+    color: white;
+  }
+  table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #3949AB;
+    color: #fff;
+  }
+  

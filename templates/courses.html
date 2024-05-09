@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1a5a7c;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .schedule {
+    width: 100%;
+    max-width: 800px;
+    background: #006d77;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000; /* For text inside the table */
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .logo {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .controls input,
+  .controls select,
+  .controls button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  .controls button {
+    background-color: #3949AB;
+    color: white;
+  }
+  table {
+    width: 100%;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #3949AB;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+<div class="schedule">
+  <div class="header">
+    <h1>Course List</h1>
+    <div class="logo">Logo Here</div>
+  </div>
+  <div class="controls">
+    <input type="text" placeholder="Search">
+    <select>
+      <option>Class Type</option>
+      <option>Online</option>
+      <option>In-Person</option>
+    </select>
+    <select>
+      <option>Focus Area</option>
+      <option>Accounting</option>
+      <option>Psychology</option>
+    </select>
+    <select>
+      <option>Spring 2023</option>
+      <option>Fall 2023</option>
+      <option>Winter 2024</option>
+    </select>
+    <button>Apply</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>CRN</th>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Dates</th>
+        <th>Days</th>
+        <th>Times</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>21758</td>
+        <td>PSYC240N</td>
+        <td>Drugs and Alcohol (P)</td>
+        <td>3</td>
+        <td>3/20-5/06</td>
+        <td>Online</td>
+        <td>-</td>
+        <td>$714.00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
