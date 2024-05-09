@@ -4,6 +4,7 @@ from db import db
 
 html_bp = Blueprint("html", __name__)
 
+
 @html_bp.route("/")
 def homepage():
     return render_template("home.html")
@@ -13,7 +14,7 @@ def course_json():
     statement = db.select(Course).order_by(Course.name)
     records = db.session.execute(statement)
     course = records.scalars().all()
-    return render_template("customers.html", course=course)
+    return render_template("courses.html", course=course)
 
 @html_bp.route("/students")
 def student_json():
