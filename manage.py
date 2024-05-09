@@ -77,10 +77,10 @@ def create_registration(amount):
 
 
 
-
 if __name__ == "__main__":
     drop_tables()
     create_students()
     create_programs()
     create_courses()
     create_registration(1)
+
