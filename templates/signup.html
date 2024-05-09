@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <p>If you already have an account, <a href="login.html">Login</a></p>
+    <form>
+        <fieldset>
+            <label for="username">Username: <input id="username" name="username" type="text" pattern="[a-z0-5]{8,}" required></label>
+            <label for="password">Create a password: <input id="password" name="password" type="password" pattern="[a-z0-5]{8,}" required></label>
+            <label for="confirmation">Confirm your password: <input id="confirmation" name="confirmation" type="password" pattern="[a-z0-5]{8,}" required></label>
+        </fieldset>
+        <label for="terms-and-conditions">
+            <input class="inline" id="terms-and-conditions" type="checkbox" required name="terms-and-conditions" /> I accept the <a href="terms-and-conditions.txt">terms and conditions</a>
+          </label>
+          <input type="submit" value="Submit" required/>
+    </form>
+</body>
+</html>
