@@ -13,8 +13,8 @@ def homepage():
 def course_json():
     statement = db.select(Course).order_by(Course.name)
     records = db.session.execute(statement)
-    course = records.scalars().all()
-    return render_template("courses.html", course=course)
+    results = records.scalars().all()
+    return render_template("courses.html", course=results)
 
 @html_bp.route("/students")
 def student_json():
