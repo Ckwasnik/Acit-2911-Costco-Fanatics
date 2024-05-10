@@ -39,3 +39,7 @@ class Registration(db.Model):
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> developer
