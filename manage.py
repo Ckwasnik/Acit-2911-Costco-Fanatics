@@ -84,7 +84,3 @@ if __name__ == "__main__":
     create_courses()
 <<<<<<< HEAD
     create_registration(5)
-=======
-    create_registration(1)
-
->>>>>>> 96772bcdcded2b328698182a0c180e203e98a063
