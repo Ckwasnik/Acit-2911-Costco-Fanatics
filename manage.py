@@ -63,10 +63,10 @@ def create_programs():
 def create_registration(amount):
     for _ in range(amount):
         with app.app_context():
-            select_student = db.select(Student.id).order_by(func.random()).limit(1)
+            select_student = db.select(Student.id).order_by(func.random()).limit(amount)
             student = db.session.execute(select_student).scalar()
 
-            select_course = db.select(Course.id).order_by(func.random()).limit(1)
+            select_course = db.select(Course.id).order_by(func.random()).limit(amount)
             course = db.session.execute(select_course).scalar()
 
             registration = Registration(student_id=student, course_id=course)
@@ -83,4 +83,4 @@ if __name__ == "__main__":
     create_students()
     create_programs()
     create_courses()
-    create_registration(1)
+    create_registration(5)

@@ -1,5 +1,5 @@
-name,teacher,program_id,
-webdev,tim,1 
-python,chris,1
-biology,smith,2
-social_studies,brown,3 
+name,teacher,program_id,CRN,Credits,Days,Cost
+webdev,tim,1,123,4,Monday Wedensday, 700.00 
+python,chris,1,510,4, Tuesday, 410.00 
+biology,smith,2,444,4, Thursday Friday, 350.00 
+social_studies,brown,3,678,4, Monday Tuesday, 400.00 
