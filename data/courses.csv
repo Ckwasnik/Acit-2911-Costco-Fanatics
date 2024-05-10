@@ -1,5 +1,5 @@
-name,teacher,program_id,
-webdev,tim,1 
-python,chris,1
-biology,smith,2
-social_studies,brown,3 
+name,teacher,program_id,credits,dates,cost
+Webdev,Tim,1,4,2024/01-2024/05,400.00 
+Python,Chris,1,3,2024/01-2024/05,500.00 
+Biology,Smith,2,3,2024/01-2024/05,500.00
+Social Studies,Brown,3,4,2024/01-2024/05,450.00 

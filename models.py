@@ -24,6 +24,9 @@ class Course(db.Model):
     program_id = mapped_column(ForeignKey(Program.id), nullable=False)
     name = mapped_column(String(200), nullable=False)
     teacher = mapped_column(String(200), nullable=False)
+    credits = mapped_column(Integer, nullable=False)
+    dates = mapped_column(String(200), nullable=False)
+    cost = mapped_column(Integer, nullable=False)
 
 
     registrations = relationship('Registration', back_populates='course')
