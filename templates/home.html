@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<p>bods</p>
+<ul>
+
+{% for course in course %}
+{{ course.program_id }}
+{{ course.name }}
+{{ course.teacher }}
+{{ course.credits }}
+{{ course.dates }}
+{{ course.cost }}
+{% endfor %}
+</ul>
+</body>
+</html>

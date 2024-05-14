@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course List</title>
+<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<div class="schedule">
+  <div class="header">
+    <h1>Course List</h1>
+  </div>
+  <div class="controls">
+    <input type="text" placeholder="Search">
+    <select>
+      <option>Class Type</option>
+      <option>Online</option>
+      <option>Inclass</option>
+    </select>
+    <select>
+      <option>Focus Area</option>
+      <option>CIT</option>
+      <option>CST</option>
+      <option>Financial Planning</option>
+    </select>
+    <select>
+      <option>Teacher</option>
+      <option>Tim</option>
+      <option>Chris</option>
+      <option>Smith</option>
+      <option>Brown</option>
+    </select>
+    <button>Apply</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Program ID</th>
+        <th>Course Name</th>
+        <th>Teacher</th>
+        <th>Credits</th>
+        <th>Dates</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in course %}
+      <tr>
+        <td>{{ course.program_id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.teacher }}</td>
+        <td>{{ course.credits }}</td>
+        <td>{{ course.dates }}</td>
+        <td>{{ course.cost }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
