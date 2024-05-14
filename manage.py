@@ -77,18 +77,10 @@ def create_registration(amount):
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> developer
 if __name__ == "__main__":
     drop_tables()
     create_students()
     create_programs()
     create_courses()
-<<<<<<< HEAD
-    create_registration(1)
-=======
-<<<<<<< HEAD
     create_registration(5)
->>>>>>> developer
+
