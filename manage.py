@@ -28,22 +28,28 @@ def create_students():
             db.session.add(student)
         db.session.commit()
 
+import csv
+from models import Course
+from db import db
+
 def create_courses():
     courseinfo = []
     with open("./data/courses.csv", newline='') as csvfile:
         course = csv.DictReader(csvfile, delimiter=',')
         # Iterate over each row in the CSV file
         for row in course:
-            name, teacher, program_id = row["name"], row["teacher"], row["program_id"]
-            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id})
+            name, teacher, program_id, credits, dates, cost = row["name"], row["teacher"], row["program_id"], row["credits"], row["dates"], row["cost"]
+            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id, "credits": credits, "dates": dates, "cost": cost})
     with app.app_context():
         db.create_all()
         for info in courseinfo:
-            # Create a Student
-            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'])
-            # Add each student to the database session
+            # Create a Course
+            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'], credits=info['credits'], dates=info['dates'], cost=info['cost'])
+            # Add each course to the database session
             db.session.add(course)
+        # Commit the changes to the database
         db.session.commit()
+
 
 def create_programs():
     programinfo = []
@@ -63,10 +69,10 @@ def create_programs():
 def create_registration(amount):
     for _ in range(amount):
         with app.app_context():
-            select_student = db.select(Student.id).order_by(func.random()).limit(1)
+            select_student = db.select(Student.id).order_by(func.random()).limit(amount)
             student = db.session.execute(select_student).scalar()
 
-            select_course = db.select(Course.id).order_by(func.random()).limit(1)
+            select_course = db.select(Course.id).order_by(func.random()).limit(amount)
             course = db.session.execute(select_course).scalar()
 
             registration = Registration(student_id=student, course_id=course)
@@ -82,5 +88,5 @@ if __name__ == "__main__":
     create_students()
     create_programs()
     create_courses()
-    create_registration(1)
+    create_registration(5)
 
