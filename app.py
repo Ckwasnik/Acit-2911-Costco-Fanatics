@@ -3,6 +3,7 @@ from db import db
 from flask import Flask
 from flask import Blueprint, render_template, redirect, url_for
 from models import Program, Student, Course, Registration
+from routes.api_courses import api_courses_bp
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -12,12 +13,7 @@ app.instance_path = Path(".").resolve()
 
 db.init_app(app)
 
-@app.route("/courses")
-def course_json():
-    statement = db.select(Course).order_by(Course.name)
-    records = db.session.execute(statement)
-    results = records.scalars().all()
-    return render_template("courses.html", course=results)
+app.register_blueprint(api_courses_bp)
 
 @app.route("/students")
 def render_student():
