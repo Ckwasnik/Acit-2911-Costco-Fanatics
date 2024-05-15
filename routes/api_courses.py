@@ -29,9 +29,9 @@ def register_course(course_id):
     db.session.commit()
     return jsonify({"message": "Registration created successfully"}), 201
 
-@api_courses_bp.route("/api/courses/<int:course_id>", methods=["DELETE"])
-def delete_course(course_id):
-    course = Course.query.get_or_404(course_id)
-    db.session.delete(course)
+@api_courses_bp.route("/api/registration/<int:registration_id>", methods=["DELETE"])
+def delete_register(registration_id):
+    registration = Registration.query.get_or_404(registration_id)
+    db.session.delete(registration)
     db.session.commit()
     return jsonify({"message": "Course deleted successfully"}), 204
