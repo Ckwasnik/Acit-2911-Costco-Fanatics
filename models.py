@@ -30,7 +30,8 @@ class Course(db.Model):
     start_time = mapped_column(Integer, nullable=False)
     end_time = mapped_column(Integer, nullable=False)
     course_duration = mapped_column(Integer, nullable=False)
-    day = mapped_column(String, nullable=False) 
+    day = mapped_column(String, nullable=False)
+    is_registered = mapped_column(Boolean, default=False) 
 
     registrations = relationship('Registration', back_populates='course', cascade="all, delete-orphan")
 

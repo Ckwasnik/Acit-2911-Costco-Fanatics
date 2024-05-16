@@ -25,13 +25,18 @@ def register_course(course_id):
     if student is None:
         return jsonify({"error": "Student not found"}), 404
     registration = Registration(student_id=student_id, course_id=course_id)
+    course.is_registered = True
     db.session.add(registration)
     db.session.commit()
     return jsonify({"message": "Registration created successfully"}), 201
 
+
 @api_courses_bp.route("/api/registration/<int:registration_id>", methods=["DELETE"])
 def delete_register(registration_id):
     registration = Registration.query.get_or_404(registration_id)
+    course_id = registration.course_id
+    course = Course.query.get_or_404(course_id)
+    course.is_registered = False
     db.session.delete(registration)
     db.session.commit()
-    return jsonify({"message": "Course deleted successfully"}), 204
+    return jsonify({"message": "Registration deleted successfully"}), 204

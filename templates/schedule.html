@@ -28,7 +28,7 @@
                 {% for day in ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] %}
                     {% set course_found = false %}
                     {% for course in courses %}
-                        {% if course.start_time == hour and course.day == day %}
+                        {% if course.start_time == hour and course.day == day and course.is_registered %}
                             <td rowspan="2" class="highlight">
                                 <a href="#">{{ course.name }}</a>
                             </td>
