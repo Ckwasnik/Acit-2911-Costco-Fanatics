@@ -1,5 +1,5 @@
-name,teacher,program_id,credits,dates,cost
-Webdev,Tim,1,4,2024/01-2024/05,400.00 
-Python,Chris,1,3,2024/01-2024/05,500.00 
-Biology,Smith,2,3,2024/01-2024/05,500.00
-Social Studies,Brown,3,4,2024/01-2024/05,450.00 
+name,teacher,program_id,credits,dates,cost,start_time,end_time,day,course_duration
+Webdev,Tim,1,4,2024/01-2024/05,400.00,8,12,monday,4
+Python,Chris,1,3,2024/01-2024/05,500.00,11,1,tuesday,2
+Biology,Smith,2,3,2024/01-2024/05,500.00,13,5,monday,4
+Social Studies,Brown,3,4,2024/01-2024/05,450.00,15,5,tuesday,2
