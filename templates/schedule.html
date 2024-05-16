@@ -29,7 +29,7 @@
                     {% set course_found = false %}
                     {% for course in courses %}
                         {% if course.start_time == hour and course.day == day and course.is_registered %}
-                            <td rowspan="2" class="highlight">
+                            <td rowspan={{ course.course_duration }} class="highlight">
                                 <a href="#">{{ course.name }}</a>
                             </td>
                             {% set course_found = true %}
