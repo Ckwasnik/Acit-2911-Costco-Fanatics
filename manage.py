@@ -38,13 +38,13 @@ def create_courses():
         course = csv.DictReader(csvfile, delimiter=',')
         # Iterate over each row in the CSV file
         for row in course:
-            name, teacher, program_id, credits, dates, cost = row["name"], row["teacher"], row["program_id"], row["credits"], row["dates"], row["cost"]
-            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id, "credits": credits, "dates": dates, "cost": cost})
+            name, teacher, program_id, credits, dates, cost, start_time, end_time, day, course_duration = row["name"], row["teacher"], row["program_id"], row["credits"], row["dates"], row["cost"], row["start_time"], row["end_time"], row["day"], row['course_duration']
+            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id, "credits": credits, "dates": dates, "cost": cost, "start_time": start_time, "end_time": end_time, "day": day, "course_duration": course_duration})
     with app.app_context():
         db.create_all()
         for info in courseinfo:
             # Create a Course
-            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'], credits=info['credits'], dates=info['dates'], cost=info['cost'])
+            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'], credits=info['credits'], dates=info['dates'], cost=info['cost'], start_time = info['start_time'], end_time =info['end_time'],day=info['day'], course_duration =info['course_duration'])
             # Add each course to the database session
             db.session.add(course)
         # Commit the changes to the database

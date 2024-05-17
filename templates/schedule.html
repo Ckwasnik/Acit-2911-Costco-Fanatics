@@ -4,16 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule</title>
-    <link rel="stylesheet" href="schedule.css">
-    <script src="schedule.js"></script>
+    <link rel="stylesheet" href="../static/schedule.css">
 </head>
 <body>
-    <img src="Courseco-logo.png" alt="Courseco-logo">
-    <div>
-        <a href="courses.html">Course Registration</a>
-        <p>Course Calendar</p> 
-        <p>Logout</p>
-    </div>
+    <img src="../static/Courseco-logo.png" alt="Courseco-logo">
+    <a href="{{url_for('api_courses.course_json')}}">courses</a>
+    <div></div>
     <table>
         <tr>
             <th>Time</th>
@@ -25,127 +21,45 @@
             <th>Friday</th>
             <th>Saturday</th>
         </tr>
-
-        <tr>
-            <td>8:00</td>
-            <td>Sunday 8</td>
-            <td>Monday 8</td>
-            <td>Tuesday 8</td>
-            <td>Wednesday 8</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>9:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>10:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>11:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>12:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>13:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>14:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>15:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>16:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>17:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>18:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
-        <tr>
-            <td>19:00</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-            <td>Event</td>
-        </tr>
+        {% for hour in range(8, 20) %}
+            <tr>
+                <td>{{ hour }}:00</td>
+                {% for day in ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'] %}
+                    {% set course_found = false %}
+                    {% for course in courses %}
+                        {% if course.start_time == hour and course.day == day and course.is_registered %}
+                            <td rowspan={{ course.course_duration }} class="highlight">
+                                <a href="#" onclick="showModal('{{ course.name }}', '{{ course.teacher }}', '{{ course.credits }}', '{{ course.dates }}', '{{ course.cost }}')">{{ course.name }}</a>
+                                <!-- Add the unregister course button here -->
+                                <form action="{{ url_for('api_courses.unregister_course', course_id=course.id) }}" method="POST">
+                                    <input type="hidden" name="_method" value="POST">
+                                    <button type="submit">Unregister Course</button>
+                                </form>
+                            </td>
+                            {% set course_found = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if not course_found %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
     </table>
+
+    <!-- The Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="courseName"></h2>
+            <p><strong>Teacher:</strong> <span id="courseTeacher"></span></p>
+            <p><strong>Credits:</strong> <span id="courseCredits"></span></p>
+            <p><strong>Dates:</strong> <span id="courseDates"></span></p>
+            <p><strong>Cost:</strong> <span id="courseCost"></span></p>
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file -->
+    <script src="../static/schedule.js"></script>
 </body>
 </html>
