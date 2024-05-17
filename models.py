@@ -34,9 +34,28 @@ class Course(db.Model):
         return{
             "id": self.id,
             "name": self.name,
-            "phone": self.program_id,
-            "balance": self.teacher
+            "program_id": self.program_id,
+            "teacher": self.teacher
         }
+
+    def __init__(self, name, teacher, credits):
+        if type(name) and type(teacher) is not str:
+            raise AttributeError
+        if type(credits) is not int:
+            raise AttributeError
+
+        self.name = name
+        self.teacher = teacher
+        self.credits = credits
+
+
+    def creditLimit(self, credits):
+        if self.credits > 4:
+            return False
+        else:
+            return True
+            
+    
 
 class Registration(db.Model):
     id = mapped_column(Integer, primary_key=True)
