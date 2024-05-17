@@ -68,9 +68,19 @@ class Registration(db.Model):
     def to_json(self):
         return{
             "id": self.id,
-            "name": self.student_id,
-            "phone": self.course_id,
+            "student_id": self.student_id,
+            "course_id": self.course_id,
         }
+
+    def __init__(self, student_id, course_id):
+        if type(student_id) is not int:
+            raise AttributeError 
+        if type(course_id) is not int:
+            raise AttributeError        
+        self.student_id = student_id
+        self.course_id = course_id
+
+
 
 
 
