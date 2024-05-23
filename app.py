@@ -1,23 +1,32 @@
 from pathlib import Path
-from db import db
 from flask import Flask
-from flask import Blueprint, render_template, redirect, url_for
-from models import Program, Student, Course, Registration
+from extensions import db, bcrypt, login_manager
+from models import User
 from routes.api_courses import api_courses_bp
 from routes.api_schedule import api_schedule_bp
+from routes.html import html_bp
 
+def create_app():
+    app = Flask(__name__, static_url_path='/static')
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqdatabase.db"
+    app.instance_path = Path(".").resolve()
+    app.config['SECRET_KEY'] = 'thisisasecretkey'
 
-app = Flask(__name__, static_url_path='/static')
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqdatabase.db"
-app.instance_path = Path(".").resolve()
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
 
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
-db.init_app(app)
+    app.register_blueprint(api_courses_bp)
+    app.register_blueprint(api_schedule_bp)
+    app.register_blueprint(html_bp)
 
-app.register_blueprint(api_courses_bp)
-
-app.register_blueprint(api_schedule_bp)
-
+    return app
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8888)
+    app = create_app()
+    app.run(debug=True, port=4000)
