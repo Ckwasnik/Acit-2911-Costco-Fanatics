@@ -47,9 +47,28 @@ class Course(db.Model):
         return{
             "id": self.id,
             "name": self.name,
-            "phone": self.program_id,
-            "balance": self.teacher
+            "program_id": self.program_id,
+            "teacher": self.teacher
         }
+
+    def __init__(self, name, teacher, credits):
+        if type(name) and type(teacher) is not str:
+            raise AttributeError
+        if type(credits) is not int:
+            raise AttributeError
+
+        self.name = name
+        self.teacher = teacher
+        self.credits = credits
+
+
+    def creditLimit(self, credits):
+        if self.credits > 4:
+            return False
+        else:
+            return True
+            
+    
 
 class Registration(db.Model):
     id = mapped_column(Integer, primary_key=True)
@@ -62,8 +81,8 @@ class Registration(db.Model):
     def to_json(self):
         return{
             "id": self.id,
-            "name": self.student_id,
-            "phone": self.course_id,
+            "student_id": self.student_id,
+            "course_id": self.course_id,
         }
     
 class User(db.Model, UserMixin):
@@ -102,6 +121,23 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
+    def __init__(self, student_id, course_id):
+        if type(student_id) is not int:
+            raise AttributeError 
+        if type(course_id) is not int:
+            raise AttributeError        
+        self.student_id = student_id
+        self.course_id = course_id
 
 
 
+
+
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> developer
+>>>>>>> cf
