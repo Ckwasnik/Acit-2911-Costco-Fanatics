@@ -8,6 +8,7 @@ from models import Course, Student, Registration
 api_courses_bp = Blueprint("api_courses", __name__)
 
 @api_courses_bp.route("/courses")
+@login_required
 def course_json():
     statement = db.select(Course).order_by(Course.name)
     records = db.session.execute(statement)
