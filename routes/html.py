@@ -25,13 +25,14 @@ def render_homepage():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')  # Ensure the password hash is a string
         student = Student(name=form.username.data, program_id=1)
         db.session.add(student)
-        db.session.commit()
+        db.session.commit()  # Commit the Student object to generate an ID
+        
         new_user = User(username=form.username.data, password=hashed_password, student_id=student.id)
         db.session.add(new_user)
-        db.session.commit()
+        db.session.commit()  # Commit the User object to the database
 
         return redirect(url_for('html.render_homepage'))
 
