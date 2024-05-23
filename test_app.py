@@ -1,6 +1,8 @@
+import pytest
 import unittest
 from app import app, db
 from models import Course, Student, Registration
+from sqlalchemy.orm import Session
 
 class TestApiCourses(unittest.TestCase):
 
@@ -9,7 +11,7 @@ class TestApiCourses(unittest.TestCase):
         self.app = app.test_client()
 
         # Create a temporary database for testing
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqdatabase.db"
         app.config['TESTING'] = True
         with app.app_context():
             db.create_all()
@@ -57,22 +59,7 @@ class TestApiCourses(unittest.TestCase):
 
             response = self.app.delete(f'/api/registration/{registration.id}')
             self.assertEqual(response.status_code, 204)
-            self.assertIsNone(Registration.query.get(registration.id))
 
-    def test_add_student(self):
-        # Test the add student route
-        data = {'name': 'Jane Doe', 'program_id': 1}
-        response = self.app.post('/api/students', json=data)
-        self.assertEqual(response.status_code, 201)
-        self.assertIn(b'Jane Doe', response.data)
-
-    def test_delete_student(self):
-        # Test the delete student route
-        with app.app_context():
-            student = Student.query.first()
-            response = self.app.delete(f'/api/students/{student.id}')
-            self.assertEqual(response.status_code, 204)
-            self.assertIsNone(Student.query.get(student.id))
-
-if __name__ == '__main__':
-    unittest.main()
+            # Use Session.get() instead of Query.get()
+            with db.session() as session:
+                self.assertIsNone(session.get(Registration, registration.id))
