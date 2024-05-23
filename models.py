@@ -128,16 +128,3 @@ class LoginForm(FlaskForm):
             raise AttributeError        
         self.student_id = student_id
         self.course_id = course_id
-
-
-
-
-
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> developer
->>>>>>> cf
