@@ -89,4 +89,11 @@ class Registration(db.Model):
 
 
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> developer
+>>>>>>> cf
