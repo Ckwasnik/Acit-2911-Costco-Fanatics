@@ -1,10 +1,12 @@
 from db import db
-from app import app
-from models import Student, Program, Course, Registration
+from app import create_app
+from models import Student, Program, Course, Registration, User
 import csv
 from sqlalchemy.sql import functions as func
 from random import randint, random
 import random
+
+app = create_app()
 
 def drop_tables():
     with app.app_context():
@@ -27,10 +29,6 @@ def create_students():
             # Add each student to the database session
             db.session.add(student)
         db.session.commit()
-
-import csv
-from models import Course
-from db import db
 
 def create_courses():
     courseinfo = []
@@ -79,6 +77,14 @@ def create_registration(amount):
             db.session.add(registration)
 
             db.session.commit()
+
+def create_user():
+    username = "test"
+    password = "test"
+    student_id = 5
+    admin = User(username=username, password=password, student_id=student_id)
+    db.session.add(admin)
+    db.session.commit()
 
 
 

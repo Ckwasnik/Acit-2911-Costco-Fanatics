@@ -1,4 +1,6 @@
 from flask import Blueprint, jsonify, request, render_template, redirect, url_for
+from flask_login import login_required, current_user
+from models import User
 
 from db import db
 from models import Course, Student, Registration
@@ -13,8 +15,10 @@ def course_json():
     return render_template("courses.html", course=results)
 
 @api_courses_bp.route("/api/courses/<int:course_id>/register", methods=["POST"])
+@login_required
 def register_course(course_id):
-    student_id = 1
+    user = current_user
+    student_id=user.student_id
     if not student_id:
         return jsonify({"error": "student_id is required"}), 400
     course = Course.query.get_or_404(course_id)
