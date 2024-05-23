@@ -17,16 +17,24 @@ def course_json():
 @api_courses_bp.route("/api/courses/<int:course_id>/register", methods=["POST"])
 @login_required
 def register_course(course_id):
+    # Get the currently logged-in user
     user = current_user
-    student_id=user.student_id
-    if not student_id:
-        return jsonify({"error": "student_id is required"}), 400
+    
+    # Get the student associated with the current user
+    student = user.student
+    
+    if not student:
+        return jsonify({"error": "No student associated with this user"}), 400
+    
+    student_id = student.id
+
+    # Register the course for the student
     course = Course.query.get_or_404(course_id)
-    student = Student.query.get_or_404(student_id)
     registration = Registration(student_id=student_id, course_id=course_id)
     course.is_registered = True
     db.session.add(registration)
     db.session.commit()
+    
     return redirect(url_for('api_courses.course_json'))
 
 
