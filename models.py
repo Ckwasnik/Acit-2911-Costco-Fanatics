@@ -50,23 +50,6 @@ class Course(db.Model):
             "program_id": self.program_id,
             "teacher": self.teacher
         }
-
-    def __init__(self, name, teacher, credits):
-        if type(name) and type(teacher) is not str:
-            raise AttributeError
-        if type(credits) is not int:
-            raise AttributeError
-
-        self.name = name
-        self.teacher = teacher
-        self.credits = credits
-
-
-    def creditLimit(self, credits):
-        if self.credits > 4:
-            return False
-        else:
-            return True
             
     
 
@@ -119,12 +102,3 @@ class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
     password = PasswordField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Password"})
     submit = SubmitField('Login')
-
-
-    def __init__(self, student_id, course_id):
-        if type(student_id) is not int:
-            raise AttributeError 
-        if type(course_id) is not int:
-            raise AttributeError        
-        self.student_id = student_id
-        self.course_id = course_id
