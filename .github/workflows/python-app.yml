@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "developer" ]
+    branches: [ "schedule-unit-testing" ]
   pull_request:
-    branches: [ "developer" ]
+    branches: [ "schedule-unit-testing" ]
 
 permissions:
   contents: read
