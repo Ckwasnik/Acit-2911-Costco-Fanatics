@@ -1,4 +1,15 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
+language: python
+python:
+  - "3.8"  # You can specify the Python version you need
+
+services:
+  - sqlite
+
+# Install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install -e .
+
+# Run the tests
+script:
+  - pytest
