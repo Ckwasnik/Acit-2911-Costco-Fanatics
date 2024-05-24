@@ -1,15 +1,7 @@
 language: python
 python:
   - "3.8"  # Specify the Python version you need
-
-dist: xenial  # Use Xenial distribution
-os: linux  # Specify the operating system
-
-# Install dependencies
-install:
-  - pip install -r requirements.txt
-  - pip install -e .
-
+  
 # Run the tests
 script:
   - pytest
