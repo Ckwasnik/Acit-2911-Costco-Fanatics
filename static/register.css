@@ -29,6 +29,13 @@
 
 label {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    width: 400px;
+    line-height: 26px;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -38,6 +45,9 @@ label {
 
 img {
     max-width: 100%;
+    display: grid;
+    place-content: center;
+    margin: auto;
 }
 
 a::before {
@@ -49,10 +59,10 @@ input {
     border-color: var(--courseco-red);
 }
 
-a#signup {
+a#login, a#terms-and-conditions {
     color: lightblue;
 }
 
-.submit-button {
-    background-color: var(--courseco-blue);
+a:visited {
+    color: var(--courseco-blue)
 }
