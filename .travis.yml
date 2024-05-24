@@ -1,9 +1,9 @@
 language: python
 python:
-  - "3.8"  # You can specify the Python version you need
+  - "3.8"  # Specify the Python version you need
 
-services:
-  - sqlite
+dist: xenial  # Use Xenial distribution
+os: linux  # Specify the operating system
 
 # Install dependencies
 install:
