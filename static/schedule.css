@@ -1,30 +1,32 @@
-/* schedule.css */
-
-/* Reset default margin and padding */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Add this CSS to change the background color of the highlighted box */
+
 td.highlight {
-  background-color: lightyellow; /* Change this color to the desired color */
+  background-color: rgba(1,93,170,255)
 }
 
-/* Body styles */
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: white
 }
 
-/* Logo styles */
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Link styles */
+
 a {
   color: #007bff;
   text-decoration: none;
@@ -34,7 +36,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Container styles */
+
 .schedule {
   max-width: 800px;
   margin: 0 auto;
@@ -42,9 +44,10 @@ a:hover {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
-/* Table styles */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -62,16 +65,16 @@ th {
   background-color: #f2f2f2;
 }
 
-/* Registered courses box */
+
 .registered-courses {
-  background-color: #ffffcc; /* Light yellow background */
-  border: 1px solid #ccc; /* Light gray border */
-  padding: 15px; /* Increased padding */
+  background-color: #ffffcc;
+  border: 1px solid #ccc;
+  padding: 15px;
   border-radius: 5px;
-  margin-bottom: 20px; /* Add some space between the box and the table */
+  margin-bottom: 20px;
 }
 
-/* The Modal */
+
 .modal {
   display: none;
   position: fixed;
@@ -84,7 +87,7 @@ th {
   background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content/Box */
+
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -93,7 +96,6 @@ th {
   width: 80%;
 }
 
-/* Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -108,7 +110,6 @@ th {
   cursor: pointer;
 }
 
-/* Form controls */
 input[type="text"],
 select,
 button {

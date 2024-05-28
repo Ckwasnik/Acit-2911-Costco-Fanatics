@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../static/schedule.css">
 </head>
 <body>
+  <div class="image-container">
     <img src="../static/Courseco-logo.png" alt="Courseco-logo">
+    </div>
     <a href="{{url_for('api_courses.course_json')}}">courses</a>
     <div></div>
     <table>
@@ -32,7 +34,7 @@
                                 <a href="#" onclick="showModal('{{ course.name }}', '{{ course.teacher }}', '{{ course.credits }}', '{{ course.dates }}', '{{ course.cost }}')">{{ course.name }}</a>
                                 <form action="{{ url_for('api_courses.unregister_course', course_id=course.id) }}" method="POST">
                                     <input type="hidden" name="_method" value="POST">
-                                    <button type="submit">Unregister Course</button>
+                                    <button type="submit">Drop Course</button>
                                 </form>
                             </td>
                             {% set course_found = true %}
