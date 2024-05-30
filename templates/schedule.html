@@ -8,7 +8,9 @@
 </head>
 <body>
   <div class="image-container">
+    <a href="{{ url_for('html.render_homepage') }}">
     <img src="../static/Courseco-logo.png" alt="Courseco-logo">
+    </a>
     </div>
     <a href="{{url_for('api_courses.course_json')}}">courses</a>
     <div></div>
