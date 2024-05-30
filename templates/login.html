@@ -13,7 +13,9 @@
             <div class="container">
                 <div class="row-justify-content-center">
                     <div> 
-                        <img src="/static/Courseco-logo.png" alt="Courseco-logo">
+                        <a href="{{ url_for('html.render_homepage') }}">
+                            <img src="/static/Courseco-logo.png" alt="Courseco-logo">
+                        </a>                        
                     <form method="POST" action="" class="form-horizontal"> 
                         <h1>Login</h1>
                         <p>Don't have an account? <a href="register" id="signup">Sign-up</a></p>
