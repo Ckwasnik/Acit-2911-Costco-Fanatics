@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course List</title>
+<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<a href="{{url_for('api_schedule.render_schedule')}}">Schedule</a>
+<a href="{{ url_for('html.render_homepage') }}">logout</a>
+<div class="schedule">
+    <div class="header">
+        <h1>Course List</h1>
+    </div>
+    <div class="controls">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Program ID</th>
+                <th>Course Name</th>
+                <th>Teacher</th>
+                <th>Credits</th>
+                <th>Dates</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in course %}
+            <tr>
+                <td>{{ course.program_id }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.teacher }}</td>
+                <td>{{ course.credits }}</td>
+                <td>{{ course.dates }}</td>
+                <td>{{ course.cost }}</td>
+                <td>
+                    <form action="{{ url_for('api_courses.register_course', course_id=course.id )}}" method="POST">
+                        <input type="hidden" name="course_id" value="{{ course.id }}">
+                        <button type="submit">Add Course</button>
+                    </form>
+                </td>
+            </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

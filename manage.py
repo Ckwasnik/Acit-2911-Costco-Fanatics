@@ -1,10 +1,12 @@
 from db import db
-from app import app
-from models import Student, Program, Course, Registration
+from app import create_app
+from models import Student, Program, Course, Registration, User
 import csv
 from sqlalchemy.sql import functions as func
 from random import randint, random
 import random
+
+app = create_app()
 
 def drop_tables():
     with app.app_context():
@@ -34,16 +36,18 @@ def create_courses():
         course = csv.DictReader(csvfile, delimiter=',')
         # Iterate over each row in the CSV file
         for row in course:
-            name, teacher, program_id = row["name"], row["teacher"], row["program_id"]
-            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id})
+            name, teacher, program_id, credits, dates, cost, start_time, end_time, day, course_duration = row["name"], row["teacher"], row["program_id"], row["credits"], row["dates"], row["cost"], row["start_time"], row["end_time"], row["day"], row['course_duration']
+            courseinfo.append({"name": name, "teacher": teacher, "program_id": program_id, "credits": credits, "dates": dates, "cost": cost, "start_time": start_time, "end_time": end_time, "day": day, "course_duration": course_duration})
     with app.app_context():
         db.create_all()
         for info in courseinfo:
-            # Create a Student
-            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'])
-            # Add each student to the database session
+            # Create a Course
+            course = Course(name=info['name'], teacher=info['teacher'], program_id=info['program_id'], credits=info['credits'], dates=info['dates'], cost=info['cost'], start_time = info['start_time'], end_time =info['end_time'],day=info['day'], course_duration =info['course_duration'])
+            # Add each course to the database session
             db.session.add(course)
+        # Commit the changes to the database
         db.session.commit()
+
 
 def create_programs():
     programinfo = []
@@ -63,10 +67,10 @@ def create_programs():
 def create_registration(amount):
     for _ in range(amount):
         with app.app_context():
-            select_student = db.select(Student.id).order_by(func.random()).limit(1)
+            select_student = db.select(Student.id).order_by(func.random()).limit(amount)
             student = db.session.execute(select_student).scalar()
 
-            select_course = db.select(Course.id).order_by(func.random()).limit(1)
+            select_course = db.select(Course.id).order_by(func.random()).limit(amount)
             course = db.session.execute(select_course).scalar()
 
             registration = Registration(student_id=student, course_id=course)
@@ -74,6 +78,13 @@ def create_registration(amount):
 
             db.session.commit()
 
+def create_user():
+    username = "test"
+    password = "test"
+    student_id = 5
+    admin = User(username=username, password=password, student_id=student_id)
+    db.session.add(admin)
+    db.session.commit()
 
 
 
@@ -83,4 +94,5 @@ if __name__ == "__main__":
     create_students()
     create_programs()
     create_courses()
-    create_registration(1)
+    create_registration(5)
+

@@ -1,0 +1,57 @@
+:root {
+    --main-color-black: black;
+    --white: white;
+    --courseco-red: #E31D3A;
+    --courseco-blue: #1D6FB4;
+}
+
+.form-horizontal {
+    align-items: center;
+    background-color: var(--courseco-red);
+    border-radius: 20px;
+    text-align: center;
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    padding: 20px 20px;
+    position: relative;
+    color: var(--white)
+}
+
+.form-horizontal .form-control {
+    border-radius: 20px;
+    background-color: var(--white);
+    border-color: var(--courseco-red);
+    position: relative;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.container {
+    display: grid;
+    place-content: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+a::before {
+    color: white;
+}
+
+input {
+    border-radius: 15px;
+    border-color: var(--courseco-red);
+}
+
+a#signup {
+    color: lightblue;
+}
+
+.submit-button {
+    background-color: var(--courseco-blue);
+}
